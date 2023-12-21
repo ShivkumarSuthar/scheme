@@ -40,23 +40,18 @@
 
 
         $(document).ready(function () {
-            // ... Your existing code
+        
 
             // Toggle sidebar on menu button click
             $("#menu-toggle").on("click", function () {
                 $(".nav").toggleClass("active");
             });
         });
-        function clickMe() {
-            document.querySelector(".nav").classList.toggle("hide");
-            // document.querySelector(".side").classList.toggle(".hide")
 
-            console.log("first")
-        }
 
         $(document).ready(function () {
             // Filter functionality
-            $("#filter").on("change", function () {
+            $("#filter").on("input", function () {
                 var selectedStatus = $(this).val().toLowerCase();
 
                 $(".div1").each(function () {
@@ -65,6 +60,7 @@
 
                     if (isMatch) {
                         $(this).show();
+                       
                     } else {
                         $(this).hide();
                     }
@@ -72,7 +68,7 @@
             });
 
             // Search functionality
-            $("#search").on("input", function () {
+           setInterval($("#search").on("input", function () {
                 var searchTerm = $(this).val().toLowerCase();
 
                 $(".div1").each(function () {
@@ -80,12 +76,12 @@
                     var isMatch = content.includes(searchTerm);
 
                     if (isMatch) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
+                    $(this).show().addClass("highlight"); // Add the 'highlight' class
+                } else {
+                    $(this).hide().removeClass("highlight"); // Remove the 'highlight' class
+                }
                 });
-            });
+            }),1000);
         });
     </script>
 
